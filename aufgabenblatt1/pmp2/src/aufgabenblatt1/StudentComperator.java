@@ -9,6 +9,7 @@ package aufgabenblatt1;
 
 import java.util.Comparator;
 
+
 public class StudentComperator implements Comparator<Student>{
 
 	
