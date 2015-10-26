@@ -18,7 +18,11 @@ public class StudentComparator implements Comparator<Student> {
 
 	// ------------------------------------------------------------------ Override
 	@Override
-	public int compare(Student student1, Student student2) {
+	public int compare(Student student1, Student student2){
+		if(student1 == null || student2 == null){
+			throw new IllegalArgumentException();
+		}
+		
 		int compareResult;
 
 		compareResult = student1.getNachname().compareToIgnoreCase(

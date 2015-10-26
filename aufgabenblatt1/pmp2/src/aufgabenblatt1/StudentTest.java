@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -35,6 +36,12 @@ public class StudentTest {
 		assertTrue(0 < comparator.compare(stu4, stu1)); // Ä > B
 		assertTrue(0 > comparator.compare(stu2, stu4)); // Ä > A
 		assertTrue(0 == comparator.compare(stu3, stu3)); // Bruno == Bruno
+		try {
+			comparator.compare(stu3, null);
+			Assert.assertTrue("Fehler: Es wurde keine Exception geworfen!", false);
+		} catch (IllegalArgumentException e) {
+			// everthing all rigth
+		}
 	}
 
 	@Test
@@ -44,12 +51,13 @@ public class StudentTest {
 		stu1.setPruefungsleistungsListe(stu1List);
 		double testNote = stu1.getPruefungsleistungsListe().get(0).getNote();
 		assertTrue(Math.abs(testNote - 3.) < 10e-5);
+		
+		// Test mit den Fehl_Noten.
 		stu1List.get(0).setModulName("");
 		testNote = stu1.getPruefungsleistungsListe().get(0).getNote();
 		assertTrue(Math.abs(testNote - (-1.0)) < 10e-5);
 		stu1List.get(0).setNote(9000.0);
 		testNote = stu1.getPruefungsleistungsListe().get(0).getNote();
 		assertTrue(Math.abs(testNote - (-1.0)) < 10e-5);
-
 	}
 }
