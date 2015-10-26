@@ -15,22 +15,22 @@ import java.util.Comparator;
  * @author Alexander Mendel und Karl-Fabain Witte
  */
 public class StudentComparator implements Comparator<Student> {
-  
-  //------------------------------------------------------------------ Override
-  @Override
-  public int compare(Student student1, Student student2) {
-    int compareResult;
-    
-    compareResult = 
-        student1.getNachname().compareToIgnoreCase(student2.getNachname());
-    
-    // wenn nachname gleich sind, vergleiche Vornamen
-    if ( compareResult == 0 ){
-      compareResult = 
-          student1.getVorname().compareToIgnoreCase(student2.getVorname());
-    }
-    return compareResult;
-  }
-  
+
+	// ------------------------------------------------------------------ Override
+	@Override
+	public int compare(Student student1, Student student2) {
+		int compareResult;
+
+		compareResult = student1.getNachname().compareToIgnoreCase(
+		    student2.getNachname());
+
+		// wenn nachname gleich sind, vergleiche Vornamen
+		if (compareResult == 0) {
+			compareResult = student1.getVorname().compareToIgnoreCase(
+			    student2.getVorname());
+		}
+		return compareResult;
+	}
+
 }
-//------------------------------------------------------------------------- EOF
+// ------------------------------------------------------------------------- EOF
