@@ -151,13 +151,41 @@ package aufgabenblatt1;
     return text;
   }
   
+  
+  
+  //------------------------------------------------- Vergleich ohne Comparable
+  /*
+  /**
+   * Gibt das kleinste Element aus der Liste wieder.
+   * Dabei ist kleinste element hier der einfachhaltshalber weit gefasst.
+   * Eigendlich müsse für die verscheidensten Typen ein Typcast und if-cond 
+   * gesetzt werden, damit man das ohne comparable implementieren kann.
+   * Comparable ist halt nunmal zum vergleichen da.
+   * Deswegen dient der Hashcode, welcher gut funtioniert
+   * @return kleinste Element der Liste
+   */
+  /*
+  public T getKleinstesElement(){
+    T kleinstesElement = null;  
+    if( elemente != null ){
+      int indexKlein = 0;
+      for (int index = 0; index < anzahlElemente; index++ ){      	
+        if( elemente[indexKlein].hashCode() > elemente[index].hashCode() ){
+          indexKlein = index;
+      	}
+      }
+      kleinstesElement = (T)elemente[indexKlein];
+    }
+    return kleinstesElement;     
+  }     
+  */  
+  
   //--------------------------------------------------- UpperBounds in Methoden
   /**
    * Gibt das kleinste Element aus der Liste wieder.
    * Dafür wird eine Vergleichsmöglichkeit benötigt (Comparable).
    * @return kleinste Element der Liste
    */
-  
   // Wenn Klasse die UpperBound verwedet:
   public T getKleinstesElement(){
   //public <T extends Comparable<T>> T getKleinestesElement(){
@@ -175,27 +203,18 @@ package aufgabenblatt1;
     return kleinstesElement;
   }
   
-  /**
-   * 
-   * 
-   * 
-   */
-  
-  
-  
   // ------------------------------------------------------------ Integer Summe
-  
   /**
    * Summiert die Werte einer Liste von Ganzzahlen.
    * @param intListe Liste von Ganzzahlen
    * @return Summe aller Ganzzahlen der Liste
    */
   public static int summe(ArrayListe<Integer> intListe){
-    int sum = 0;
+    int result = 0;
     for(int index = 0; index < intListe.getAnzahlElemente(); index++){
-      sum += intListe.get(index).intValue();
+      result += intListe.get(index).intValue();
     }
-    return sum;
+    return result;
   }
  
 }

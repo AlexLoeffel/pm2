@@ -88,6 +88,16 @@ public class ArrayListeTest {
     test.hinzufuegen(666);
     test.hinzufuegen(-42);
     assertEquals((Integer)(-42), test.getKleinstesElement());
+    /* // String
+    ArrayListe<String> test2 = 
+        new ArrayListe<String>();
+    test2.hinzufuegen("Bier");
+    test2.hinzufuegen("Bier");
+    test2.hinzufuegen("und noch mehr Bier");
+    test2.hinzufuegen("fish'n'chips");
+    test2.hinzufuegen("und Bier");
+    assertEquals("Bier", test2.getKleinstesElement());
+    */
   }
 
   @Test

@@ -23,12 +23,11 @@ public class Pruefung {
    * @return Wahrheitswert, ob Elemente Zahlen sind oder nicht.
    * @throws NullPointerException
    */
-  public static boolean isNumber(ArrayListe<?> liste)
-      throws NullPointerException {
+  public static boolean isNumber(ArrayListe<?> liste) {
     if ( liste.getAnzahlElemente() == 0 ){
       return false;
     }
-    return liste.get(0) instanceof Number ? true:false;
+    return (liste.get(0) instanceof Number)? true : false;
   }
   
 }
