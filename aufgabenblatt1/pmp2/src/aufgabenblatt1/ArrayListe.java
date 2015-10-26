@@ -26,7 +26,8 @@ public class ArrayListe<T> {
 		elemente[getAnzahlElemente()] = elemente [getAnzahlElemente()-1];
 	}
 	public void entferneElementAnIndex(int index){
-		
+		elemente[index] = null;
+		anzahlElemente --;
 	}
 	public int getAnzahlElemente(){
 		return anzahlElemente;
