@@ -173,8 +173,14 @@ package aufgabenblatt1;
       kleinstesElement = (T)elemente[indexKlein];
     }
     return kleinstesElement;
-    
   }
+  
+  /**
+   * 
+   * 
+   * 
+   */
+  
   
   
   // ------------------------------------------------------------ Integer Summe

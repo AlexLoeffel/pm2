@@ -13,9 +13,16 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
+/**
+ * TestKlasse zum Testen der ArrayListe<T>
+ * 
+ * Es wird nut mir dem Typ T = Integer gearbeitet.
+ * 
+ * @author Alexander Mendel Und Karl-Fabian Witte
+ *
+ */
+
 public class ArrayListeTest {
-  
-  
   
   @Test
   public void testHinzufuegen(){
