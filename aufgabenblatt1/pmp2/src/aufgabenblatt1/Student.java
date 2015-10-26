@@ -4,7 +4,7 @@
  *         Karl-Fabian Witte (karl-fabian.witte@haw-hamburg.de)
  * Aufgabe: Aufgabenblatt 1, Aufgabe 2 ("Wiederholung")
  */
-package arbeitsblatt1;
+package aufgabenblatt1;
 
 import java.util.ArrayList;
 

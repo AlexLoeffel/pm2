@@ -5,7 +5,7 @@
  * Aufgabe: Aufgabenblatt 1, Aufgabe 4 ("Generics")
  */
 
-package arbeitsblatt1;
+package aufgabenblatt1;
 
 /**
  * Eine ContainerKlasse, um die Generics zu üben.

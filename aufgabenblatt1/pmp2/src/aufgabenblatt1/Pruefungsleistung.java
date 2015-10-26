@@ -5,7 +5,7 @@
  * Aufgabe: Aufgabenblatt 1, Aufgabe 2 ("Wiederholung")
  */
 
-package arbeitsblatt1;
+package aufgabenblatt1;
 
 /**
  * Erbrachte Leistung in einem Modul.
