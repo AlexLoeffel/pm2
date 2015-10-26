@@ -113,7 +113,7 @@ public class Student implements Comparable<Student> {
    * Setter pruefungsleistungsListe
    * @param pruefungsleistungsListe Liste aller Prüfungen
    */
-  public void setVorname(ArrayList<Pruefungsleistung> pruefungsleistungsListe){
+  public void setPruefungsleistungsListe(ArrayList<Pruefungsleistung> pruefungsleistungsListe){
     this.pruefungsleistungsListe = pruefungsleistungsListe;
   }
   
