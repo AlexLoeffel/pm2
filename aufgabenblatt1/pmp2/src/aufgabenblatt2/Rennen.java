@@ -35,6 +35,10 @@ public class Rennen {
     System.out.println("START!");
     abbruch.start();
     // Start
+    //Hier und bei allen anderen for-schleifen könnte man for each nehmen
+    //// ForEach Schleife
+    //for( int k: array )
+    //dann ist das immer um das .get(i) kürzer
     for(int i=0; i < autos.size(); i++){
       autos.get(i).start();
     }
@@ -51,7 +55,7 @@ public class Rennen {
     System.err.println("FINISH!");
     // abbruchthread muss beendet werden.
     abbruch.interrupt();
-    // Sortieren nach den Pl�tzen
+    // Sortieren nach den Plätzen
     Collections.sort(autos);
     System.out.println("Ergebnis:");
     for(int i=0; i < autos.size(); i++){
