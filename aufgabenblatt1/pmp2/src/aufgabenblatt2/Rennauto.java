@@ -4,7 +4,6 @@
  *         Karl-Fabian Witte (karl-fabian.witte@haw-hamburg.de)
  * Aufgabe: Aufgabenblatt 2, Aufgabe 3 ("Threads")
  */
-
 package aufgabenblatt2;
 
 /**
@@ -91,11 +90,12 @@ public class Rennauto extends Thread implements Comparable<Rennauto> {
   }
 
   /**
+   * toString methode für einen Abbruchfall
    * 
-   * @return Informationen für die Abbgebroichenen Fall
+   * @return Informationen für die Abbgebrochenen Fall
    */
   public String printAbbruch() {
-    return String.format("Wagen %d: %.1f m in %.1f sek", autoNr,
+    return String.format("Wagen %d: %.1f m in %.6f sek", autoNr,
         gefahreneStrecke, endZeit);
   }
 
