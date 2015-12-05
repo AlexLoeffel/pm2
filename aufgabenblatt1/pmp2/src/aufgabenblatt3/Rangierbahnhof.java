@@ -6,6 +6,11 @@
  */
 package aufgabenblatt3;
 
+/**
+ * 
+ * @author kallotti
+ *
+ */
 public class Rangierbahnhof {
 
   /** 
@@ -28,7 +33,7 @@ public class Rangierbahnhof {
   * @param gleis
   * @throws IllegalArgumentException
   */
-  public void zugAbstellen(Zug zug, int gleis) throws IllegalArgumentException {
+  public synchronized void zugAbstellen(Zug zug, int gleis) throws IllegalArgumentException {
     if (gleis < 0) {
       throw new IllegalArgumentException("zu kleine Gleisnummer");
     } else if (gleis >= gleise.length) {
@@ -43,7 +48,7 @@ public class Rangierbahnhof {
    * @param gleis
    * @throws IllegalArgumentException
    */
-  public void zugAusfahren(int gleis) throws IllegalArgumentException {
+  public synchronized void zugAusfahren(int gleis) throws IllegalArgumentException {
     if (gleis < 0) {
       throw new IllegalArgumentException("zu kleine Gleisnummer");
     } else if (gleis >= gleise.length) {
@@ -57,7 +62,7 @@ public class Rangierbahnhof {
    * 
    * @param zug Zug, der Raus gefahren werden soll
    */
-  public void zugAusfahren(Zug zug){
+  public synchronized void zugAusfahren(Zug zug){
     for (int i=0;i < gleise.length; i++){
       if (gleise[i] == zug){
         gleise[i] = null;
