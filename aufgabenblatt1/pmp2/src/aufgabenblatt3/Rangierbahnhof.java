@@ -59,7 +59,18 @@ public class Rangierbahnhof {
   }
   
   /**
-   * 
+   * brauchen wir die? 
+   * mal ab davon kann mein (NEUES) remoterepo nicht auf das pushen
+   * muss an die einfahrt und ausfahrt methoden nicht an den anfang:
+   * while (gleise[getGleisAnzahl()] != null){   (bzw == für ausfahrt)
+   *  try {
+   *    this.wait();
+   *} catch (InterruptedException e) {
+   *e.printStackTrace();   
+   *}
+   * }
+   * und ans ende ein 
+   * this.notifyAll();
    * @param zug Zug, der Raus gefahren werden soll
    */
   public synchronized void zugAusfahren(Zug zug){
