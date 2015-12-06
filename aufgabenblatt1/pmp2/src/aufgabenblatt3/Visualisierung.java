@@ -26,6 +26,8 @@ import javafx.scene.Scene;
  */
 public class Visualisierung extends Application {
   
+  private Rangierbahnhof rbf;
+  
   /**
    * MAIN
    * @param args
