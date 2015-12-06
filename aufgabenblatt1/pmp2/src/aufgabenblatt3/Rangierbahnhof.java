@@ -8,92 +8,91 @@ package aufgabenblatt3;
 
 /**
  * 
- * @author kallotti
+ * @author AlexLoeffel und kafawi
  *
  */
 public class Rangierbahnhof {
 
-  /** 
+  /**
    * Beschreibt die Abstellgleise.
    */
   private Zug gleise[];
 
   /**
    * KONSTRUKTOR
-   * @param gleisAnzahl Anzahl der Abstellgleise
+   * 
+   * @param gleisAnzahl
+   *          Anzahl der Abstellgleise
    */
   public Rangierbahnhof(int gleisAnzahl) {
     gleise = new Zug[gleisAnzahl];
   }
 
-  
- /**
-  * 
-  * @param zug
-  * @param gleis
-  * @throws IllegalArgumentException
-  */
-  public synchronized void zugAbstellen(Zug zug, int gleis) throws IllegalArgumentException {
+  /**
+   * 
+   * @param zug
+   * @param gleis
+   * @throws IllegalArgumentException
+   */
+  public synchronized void zugAbstellen(Zug zug, int gleis)
+      throws IllegalArgumentException {
+    while (gleise[gleis] != null){
+      try {
+        wait();
+        // damit es schöner wird, könnte man hier eine Thread.sleep(500); 
+      } catch (InterruptedException e) {
+      }
+    }
     if (gleis < 0) {
-      throw new IllegalArgumentException("zu kleine Gleisnummer");
+      throw new IllegalArgumentException("" + gleis
+          + "ist zu kleine Gleisnummer");
     } else if (gleis >= gleise.length) {
-      throw new IllegalArgumentException("zu grosse Gleisnummer");
+      throw new IllegalArgumentException("" + gleis + "zu grosse Gleisnummer");
     } 
-    gleise[gleis]= zug;
-    return;
+    gleise[gleis] = zug;
+    this.notifyAll();
   }
-  
+
   /**
    * 
    * @param gleis
    * @throws IllegalArgumentException
    */
-  public synchronized void zugAusfahren(int gleis) throws IllegalArgumentException {
-    if (gleis < 0) {
-      throw new IllegalArgumentException("zu kleine Gleisnummer");
-    } else if (gleis >= gleise.length) {
-      throw new IllegalArgumentException("zu grosse Gleisnummer");
-    } 
-    gleise[gleis]= null;
-    return;
-  }
-  
-  /**
-   * 
-   * @param zug Zug, der Raus gefahren werden soll
-   */
-  public synchronized void zugAusfahren(Zug zug){
-    for (int i=0;i < gleise.length; i++){
-      if (gleise[i] == zug){
-        gleise[i] = null;
-        return;
+  public synchronized void zugAusfahren(int gleis)
+      throws IllegalArgumentException {
+    while (gleise[gleis] == null){
+      try {
+        wait();
+        // damit es schöner wird, könnte man hier eine Thread.sleep(500); 
+      } catch (InterruptedException e) {
       }
     }
-    return;
+    if (gleis < 0) {
+      throw new IllegalArgumentException("" + gleis
+          + "ist zu kleine Gleisnummer");
+    } else if (gleis >= gleise.length) {
+      throw new IllegalArgumentException("" + gleis + "zu grosse Gleisnummer");
+    } 
+    gleise[gleis] = null;
+    this.notifyAll();
   }
 
   /**
    * GETTER
+   * 
    * @return Abstellgleis Array
    */
   public Zug[] getGleise() {
     return gleise;
   }
 
-
   /**
    * GETTER
+   * 
    * @return Anzahl der Abstellgleise
    */
   public int getGleisAnzahl() {
     return gleise.length;
   }
 
-  
-  public static void main(String[] args) {
-    Rangierbahnhof rbf = new Rangierbahnhof(10);
-    for (Zug zug : rbf.getGleise()) {
-      System.out.println(zug);
-    }
-  }
 }

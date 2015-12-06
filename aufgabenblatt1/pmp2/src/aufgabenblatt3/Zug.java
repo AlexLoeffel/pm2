@@ -7,6 +7,12 @@
 
 package aufgabenblatt3;
 
+/**
+ * Dieser Klassenkontainer repräsentiert einen Zug.
+ * 
+ * @author AlexLoeffel und kafawi
+ *
+ */
 public class Zug {
 
 }
