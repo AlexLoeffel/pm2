@@ -27,6 +27,13 @@ public class Rangierbahnhof {
   public Rangierbahnhof(int gleisAnzahl) {
     gleise = new Zug[gleisAnzahl];
   }
+  
+  public Rangierbahnhof(Rangierbahnhof rbf) {
+    this.gleise = new Zug[rbf.getGleisAnzahl()];
+    for (int i = 0; i < gleise.length; i++){
+      this.gleise[i] = rbf.getGleise()[i];
+    }
+  }
 
   /**
    * 
