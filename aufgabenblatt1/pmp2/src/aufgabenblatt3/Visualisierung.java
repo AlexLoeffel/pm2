@@ -11,7 +11,14 @@ import java.util.Observer;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.LineTo;
@@ -21,6 +28,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
 
 /**
@@ -32,19 +40,23 @@ import javafx.scene.Scene;
 public class Visualisierung extends Application implements Observer {
 
   /**
-   * 
+   * Referenz zu dem Beobachteten Objekt
    */
   private Simulation sim;
+
+  /**
+   * REferenz auf das GridPane auf dem alles isualisiert wird
+   */
+  private GridPane   grid;
+
+  /**
+   * Dies ist die alles umschliessende Stage.
+   */
+  private Stage      stage = null;
+
   
-  /**
-   * 
-   */
-  private GridPane grid;
-  /**
-   * MAIN
-   * 
-   * @param args
-   */
+  
+  
   public Visualisierung(Simulation sim) {
     this.sim = sim;
     sim.addObserver(this);
@@ -54,20 +66,26 @@ public class Visualisierung extends Application implements Observer {
     return sim;
   }
 
-  public static void main(String[] args) {
-    Visualisierung vis = new Visualisierung(new Simulation());
-    Thread thread = new Thread(vis.getSim());
-    thread.start();
-    launch(args);
+  public static void main (String [] args){
+    Application.launch(args);
   }
+  
 
   @Override
   public void start(Stage stage) {
 
+    this.stage = stage;
+    initialisiereGUI(stage);
+    initialisiereSimulation();
+
+  }
+
+  public void initialisiereGui(Stage stage) {
+
     stage.setTitle("Rangierbahnhof Simulator 2016");
     int breite = 50;
     int hoehe = 50;
-    //GridPane grid = new GridPane();
+    // GridPane grid = new GridPane();
     grid = new GridPane();
     grid.setPadding(new Insets(5));
 
@@ -83,11 +101,15 @@ public class Visualisierung extends Application implements Observer {
       }
     }
 
+    // Anwendung beenden, wenn das Fenster geschlossen wurde.
+    stage.setOnCloseRequest((WindowEvent we) -> {
+      spielBeenden();
+    });
+
     StackPane root = new StackPane();
     root.getChildren().add(grid);
     stage.setScene(new Scene(root));
     stage.show();
-
   }
 
   private Path drawSchuppen(int breite, int hoehe) {
@@ -153,29 +175,28 @@ public class Visualisierung extends Application implements Observer {
     return lokSchuppen;
   }
 
-  @Override
-  public void update(Observable o, Object arg) {
-    
-    Rangierbahnhof r = (Rangierbahnhof)arg;
-    System.err.println("Simulation updated");
-    if(r.getGleise() != null){
-          Platform.runLater(()->{
-            grid = new GridPane();
-            int breite = 50;
-            int hoehe = 50;
-            for (int i = 0; i < sim.getRangierbahnhof().getGleisAnzahl(); i++) {
+  private void zeichneBahnhof() {
+    int breite = 50;
+    int hoehe = 50;
+    // GridPane grid = new GridPane();
+    grid = new GridPane();
+    grid.setPadding(new Insets(5));
 
-              Text gleisName = new Text(" " + i);
-              gleisName.setFont(new Font(20));
-              grid.add(gleisName, i, 0);
-            if (sim.getRangierbahnhof().getGleise()[i] == null) {
-              grid.add(drawSchuppen(breite, hoehe), i, 1);
-            } else if (sim.getRangierbahnhof().getGleise()[i] != null) {
-              grid.add(drawLokSchuppen(breite, hoehe), i, 1);
-            }
-          }
-        });
+    for (int i = 0; i < sim.getRangierbahnhof().getGleisAnzahl(); i++) {
+
+      Text gleisName = new Text(" " + i);
+      gleisName.setFont(new Font(20));
+      grid.add(gleisName, i, 0);
+      if (sim.getRangierbahnhof().getGleise()[i] == null) {
+        grid.add(drawSchuppen(breite, hoehe), i, 1);
+      } else if (sim.getRangierbahnhof().getGleise()[i] != null) {
+        grid.add(drawLokSchuppen(breite, hoehe), i, 1);
+      }
     }
-    System.err.println("Simulation updated");
+  }
+
+  @Override
+  public void update(Observable observable, Object arg) {
+    Platform.runLater(() -> zeichneBahnhof());
   }
 }

@@ -8,6 +8,7 @@ package aufgabenblatt3;
 
 import java.util.Observable;
 
+
 /**
  * 
  * @author AlexLoeffel und kafawi
@@ -21,8 +22,8 @@ public class Simulation extends Observable implements Runnable {
   private Rangierbahnhof rbf;
   
   public static void main (String [] args){
-    Thread sim = new Thread(new Simulation());
-    sim.start();
+    Thread simulation = new Thread(new Simulation());
+    simulation.start();
   }
   
   @Override
@@ -48,7 +49,7 @@ public class Simulation extends Observable implements Runnable {
       
       // Aufgabe 3.4
       setChanged();
-      notifyObservers(rbf);
+      notifyObservers(rbf.getGleise()[gleis]);
     }
     
   }

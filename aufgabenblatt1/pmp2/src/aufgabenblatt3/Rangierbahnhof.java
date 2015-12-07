@@ -7,7 +7,7 @@
 package aufgabenblatt3;
 
 /**
- * 
+ * Diese Klasse beschreibt ein Rangierbahnhof.
  * @author AlexLoeffel und kafawi
  *
  */
@@ -27,19 +27,12 @@ public class Rangierbahnhof {
   public Rangierbahnhof(int gleisAnzahl) {
     gleise = new Zug[gleisAnzahl];
   }
-  
-  public Rangierbahnhof(Rangierbahnhof rbf) {
-    this.gleise = new Zug[rbf.getGleisAnzahl()];
-    for (int i = 0; i < gleise.length; i++){
-      this.gleise[i] = rbf.getGleise()[i];
-    }
-  }
 
   /**
-   * 
-   * @param zug
-   * @param gleis
-   * @throws IllegalArgumentException
+   * Ein Zug wird auf eine bestimmtes Gleis abgestellt.
+   * @param zug Ein Zugobjelk, welcher auf das Gleis abgestellt wird.
+   * @param gleis Position, auf die der Zug geparkt wird.
+   * @throws IllegalArgumentException 
    */
   public synchronized void zugAbstellen(Zug zug, int gleis)
       throws IllegalArgumentException {
@@ -61,8 +54,8 @@ public class Rangierbahnhof {
   }
 
   /**
-   * 
-   * @param gleis
+   * Ein Zug wird auf von bestimmtes Gleis entfernt.
+   * @param gleis Position, von der der Zug rausgefahren werden soll.
    * @throws IllegalArgumentException
    */
   public synchronized void zugAusfahren(int gleis)
@@ -87,7 +80,7 @@ public class Rangierbahnhof {
   /**
    * GETTER
    * 
-   * @return Abstellgleis Array
+   * @return Array der Züge auf dem Abstellgleisen.
    */
   public Zug[] getGleise() {
     return gleise;
@@ -96,7 +89,7 @@ public class Rangierbahnhof {
   /**
    * GETTER
    * 
-   * @return Anzahl der Abstellgleise
+   * @return Anzahl der Abstellgleise.
    */
   public int getGleisAnzahl() {
     return gleise.length;
